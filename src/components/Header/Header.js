@@ -10,12 +10,11 @@ function Header() {
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 700px)");
-    mediaQuery.addListener(handleMediaQueryChange);
+    mediaQuery.addEventListener("change", handleMediaQueryChange);
     handleMediaQueryChange(mediaQuery);
 
     return () => {
-      //mediaQuery.removeEventListener(handleMediaQueryChange);
-      mediaQuery.removeListener(handleMediaQueryChange);
+      mediaQuery.removeEventListener("change", handleMediaQueryChange);
     };
   }, []);
 
