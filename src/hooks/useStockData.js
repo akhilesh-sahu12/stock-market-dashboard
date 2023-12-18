@@ -1,24 +1,28 @@
+// hooks/useStockData.js
 import { useState, useEffect } from 'react';
-import StockService from '../services/StockService';
+import { fetchStockData } from '../services/StockService';
 
 const useStockData = () => {
-  const [stocks, setStocks] = useState([]);
+  const [stockData, setStockData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchStocks = async () => {
+    const fetchData = async () => {
       try {
-        const stockData = await StockService.getStocks();
-        setStocks(stockData);
+        const data = await fetchStockData();
+        setStockData(data);
+        setLoading(false);
       } catch (error) {
-        console.error(error.message);
-        throw error;
+        setError('Error fetching stock data');
+        setLoading(false);
       }
     };
 
-    fetchStocks();
+    fetchData();
   }, []);
 
-  return stocks;
+  return { stockData, loading, error };
 };
 
 export default useStockData;

@@ -1,19 +1,18 @@
-const STOCK_API_BASE_URL = 'https://api.example.com/stocks'; // Replace with actual API base URL
+// services/StockService.js
+const BASE_URL = 'https://api.iex.cloud/v1';
+const API_KEY = 'pk_f777befb6ebd45f4a3dd467b65844607'; // Replace with your actual API key
 
-const StockService = {
-  getStocks: async () => {
-    try {
-      const response = await fetch(`${STOCK_API_BASE_URL}/all`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch stock data');
-      }
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error(error.message);
-      throw error;
+// Function to fetch stock data 
+export const fetchStockData = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/data/CORE/REF_DATA_IEX_SYMBOLS?token=${API_KEY}`);
+    if (!response.ok) {
+      throw new Error('Failed to fetch stock data');
     }
-  },
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching stock data:', error.message);
+    throw error;
+  }
 };
-
-export default StockService;
