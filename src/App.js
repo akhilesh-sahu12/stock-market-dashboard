@@ -4,6 +4,7 @@ import Header from './components/Header/Header';
 import Dashboard from './components/Dashboard/Dashboard';
 import Stocks from './components/Stocks/Stocks';
 import Login from './components/Auth/Login';
+import Register from './components/Auth/Register';
 import './App.css';
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/stocks" element={<Stocks />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/" element={<h1>Welcome to Stocks Market Dashboard</h1>} />
         </Routes>
       </div>

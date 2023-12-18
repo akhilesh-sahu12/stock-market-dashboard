@@ -1,4 +1,3 @@
-// hooks/useStockData.js
 import { useState, useEffect } from 'react';
 import { fetchStockData } from '../services/StockService';
 
